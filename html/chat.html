@@ -1,0 +1,12 @@
+
+<div class="animated" id="chat-target">
+  <h3 class="header-title">{{content.name}}</h3>
+  <textarea ng-model="content.msg" ng-keyup="send($event)"></textarea>
+
+  <div class="main">
+    <h4 ng-repeat="msg in messageTransferData">
+      {{msg.userName}} <br>
+      {{msg.message}}
+    </h4>
+  </div>
+<div>

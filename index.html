@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crazy Chat</title>
+  <!-- <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css"> -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/animate.css" rel="stylesheet">
+  <style>
+  /* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+</style>
+  <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
+  <script src="node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+  <script>
+   var socketio = /*io.connect("nodechatkiran.herokuapp.com");*/io.connect("localhost:3000");
+  </script>
+  <script data-main="js/require.config" src="js/lib/require.js"></script>
+<body>
+  <div class="container-fluid" ng-controller="dragdropController">
+        <!-- <div class="row topRow">
+            <h4 class="heading">
+                Drag and drop between the two lists.
+            </h4>
+        </div> -->
+
+        <div class="row"  style="height:inherit">
+            <div class="col-md-3" style="height:inherit">
+                        <div class="sidebar-nav" style="height:inherit">
+                          <div class="navbar navbar-default" role="navigation" style="height:inherit">
+                            <div class="navbar-collapse collapse sidebar-navbar-collapse" style="height:inherit">
+                              <ul class="nav navbar-nav" style="height:inherit">
+                                <li
+                                ng-repeat="man in men track by $index"><a id="{{man}}" ui-draggable="true" drag="man"
+                                 ui-sref="{{man}}">  {{man}}</a></li>
+                              </ul>
+                            </div><!--/.nav-collapse -->
+                        </div>
+                      </div>
+                    </div>
+            <div class="col-md-9" id="droppable" ui-on-Drop="onDrop($event, $data)" drag-enter-class="on-drag-enter-custom" drag-hover-class="on-drag-hover-custom" ui-view style="height: inherit;margin-left: -17px;padding-left: 30px;padding-top: 10px">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

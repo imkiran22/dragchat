@@ -1,0 +1,42 @@
+/* Put your css in here */
+html,body, .container-fluid {
+  height:100%
+}
+.topRow {
+    margin-bottom : 30px;
+}
+
+
+.on-drag-enter {
+    background-color : #ddd;
+}
+
+.on-drag-enter-custom {
+    /*background-color : #757575;*/
+}
+
+.on-drag-hover-custom {
+    /*background-color : lightblue;*/
+}
+.animated {
+  visibility: hidden;
+}
+.visible {
+  visibility: visible;
+}
+/*
+.on-drag-hover:before {
+  content: '';
+  display: block;
+  color: #363636;
+  font-size: x-large;
+  font-weight: 800;
+}*/
+.header-title {
+	background-color: #757575;
+	padding: 20px;
+	margin-top: -10px;
+	margin-left: -28px;
+	margin-right: -32px;
+  color: #ffffff;
+}
