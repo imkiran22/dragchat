@@ -4,33 +4,16 @@
       <title>Crazy Login</title>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="css/bootstrap.min.css" rel="stylesheet">
       <!-- Latest compiled and minified CSS -->
-      <!-- Slide logic-->
-      <style>
-      </style>
 
       </head>
       <!--<script src="build/login.js"></script>-->
       <script src="js/lib/angular-1.4.8.js"></script>
+      <script src="js/lib/angular-ui-router.js"></script>
       <script src="js/controller/loginController.js"></script>
       <body ng-app="myApp">
-      <div class="container col-sm-8" ng-controller="loginController" >
-             <h1 style="cursor:pointer;color:black;position:relative;left:34%">Login <br></h1>
-             <form class="form-horizontal" method="post" ng-submit="login(user.username,user.password)" >
-                           <div class="form-group">
-                             <label for="UserName" style="font-size:30px;color:black;" class="control-label col-sm-4">Enter a name:</label>
-                             <div class="col-sm-6" style="margin-top:10px">
-                             <input type="text" class="form-control" name="UserName" id="UserName" placeholder="Your Name" ng-model="userName" ng-keypress="keyEnter($event)" required>
-                           </div>
-                           <label class="text-danger" ng-show="error">Enter a name / Enter more than 2 letters</label>
-                           </div>
-                           <div class="form-group col-sm-12">
-
-                           </div>
-                     <div id="btn"  class="col-sm-6">
-                      <button type="button" class="btn btn-default btn-lg btn-block" style="font-family:sporty;" ng-click="userEnter()">Enter</button>
-                    </div>
-              </form>
-        </div>
+         <div ui-view  class="container col-sm-8">
+         </div>
       </body>
       </html>

@@ -1,4 +1,15 @@
-angular.module('myApp', []).controller('loginController', ['$scope', function($scope) {
+var app = angular.module('myApp', ['ui.router']);
+app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', function ($urlRouterProvider, $stateProvider, $httpProvider) {
+         $urlRouterProvider.when("login.html", "/login");
+         $urlRouterProvider.otherwise("/login");
+         // $httpProvider.interceptors.push('AjaxErrorHandler');
+         $stateProvider.state('login', {
+             url: "/login",
+             templateUrl: "html/login.html",
+             controller: 'loginController'
+         });
+}]);
+app.controller('loginController', ['$scope', function($scope) {
       $scope.error = false;
       $scope.userEnter = function () {
           if ($scope.userName !== "" && $scope.userName !== undefined && $scope.userName !== null) {
