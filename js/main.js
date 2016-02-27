@@ -1,4 +1,4 @@
-define(['angular', 'dragdropController','chatController' , 'profileController' ,'jquery', 'dragdrop', 'uiRouter'], function(angular, dragdropController, chatController, profileController, $) {
+define(['angular', 'dragdropController','chatController' , 'profileController' , 'jquery','isUserValid' ,'dateFormatFilter' ,'dragdrop', 'uiRouter'], function(angular, dragdropController, chatController, profileController, $, isUserValid, dateFormatFilter) {
    'use strict';
    var app = angular.module('myApp', ['ui.router','ngDragDrop']);
    app.init = function () {
@@ -21,5 +21,7 @@ define(['angular', 'dragdropController','chatController' , 'profileController' ,
    app.controller('chatController', chatController);
    app.controller('profileController', profileController);
    app.controller('dragdropController', dragdropController);
+   app.service('isUserValid', isUserValid);
+   app.filter('dateFormatFilter', dateFormatFilter);
    return app;
 });

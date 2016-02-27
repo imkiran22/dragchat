@@ -22,7 +22,7 @@ var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
     socket.on('message_to_server', function(data) {
         console.log(JSON.stringify(data));
-        io.sockets.emit("message_to_client",{userName: data.userName, message: data.message});
+        io.sockets.emit("message_to_client",{userName: data.userName, message: data.message, dateStr: data.dateStr});
       //   fs.open('file.txt', 'a', 666, function( e, id ) {
 	    // 	fs.write(id, data.userName + "~" + data.message + "~" + data.messageDate + "~" + data.userId + "~" + os.EOL, null, 'utf8', function() {
 	    // 		fs.close(id, function(){

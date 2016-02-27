@@ -6,7 +6,7 @@ angular.module('myApp', []).controller('loginController', ['$scope', function($s
                  $scope.error = true;
                  return;
              }
-             localStorage.setItem("user.userName", $scope.userName);
+             localStorage.setItem("user.userName", $scope.userName + "~" + Math.floor(Math.random()*100));
              window.location = "index.html";
           }
       };

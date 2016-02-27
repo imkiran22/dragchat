@@ -4,9 +4,10 @@
   <textarea ng-model="content.msg" ng-keyup="send($event)"></textarea>
 
   <div class="main">
-    <h4 ng-repeat="msg in messageTransferData">
-      {{msg.userName}} <br>
-      {{msg.message}}
-    </h4>
+    <div ng-repeat="msg in messageTransferData">
+      <h4>{{msg.dateStr | dateFormatFilter}}</h4>
+      <h3>{{msg.userName}} </h3><br>
+      <span style="color: #363636;font-size: 14px;font-weight:normal">{{msg.message}}</span>
+    </div>
   </div>
 <div>

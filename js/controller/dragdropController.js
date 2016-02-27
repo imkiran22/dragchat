@@ -1,5 +1,6 @@
 define(['jquery'], function($) {
-  return ['$scope','$state','$timeout', function($scope, $state, $timeout) {
+  return ['$scope','$state','$timeout','isUserValid', function($scope, $state, $timeout, isUserValid) {
+    isUserValid.check();
     $scope.men = [
     'chat',
     'profile'
