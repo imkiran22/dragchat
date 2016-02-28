@@ -33,10 +33,29 @@ html,body, .container-fluid {
   font-weight: 800;
 }*/
 .header-title {
-	background-color: #757575;
+	background-color: #674172;
 	padding: 20px;
 	margin-top: -10px;
 	margin-left: -28px;
 	margin-right: -32px;
   color: #ffffff;
+}
+.bubble {
+border-radius: 0 25px;
+padding: 10px;
+width: 399px;
+margin: 10px;
+}
+.bubbleHeader {
+	height: 20px;
+	/*background: slategrey;*/
+  font-size: 16px;
+  font-weight: bold;
+}
+.bubbleInner {
+	padding: 10px;
+}
+.imuser {
+  position: relative;
+  left: 560px;
 }

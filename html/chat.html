@@ -4,10 +4,15 @@
   <textarea ng-model="content.msg" ng-keyup="send($event)"></textarea>
 
   <div class="main">
-    <div ng-repeat="msg in messageTransferData">
-      <h4>{{msg.dateStr | dateFormatFilter}}</h4>
-      <h3>{{msg.userName}} </h3><br>
-      <span style="color: #363636;font-size: 14px;font-weight:normal">{{msg.message}}</span>
+    <div ng-repeat="msg in messageTransferData" class="bubble" ng-class="(msg.userId == content.userId) ? 'imuser' : ''" accesskey=""
+      ng-style="msg.userId == content.userId ? { 'background':'#2ECC71' } : { 'background':'#e9d460' }"
+      <p>
+      <span class="bubbleHeader">{{msg.userName}} </span>
+      <span style="float:right">{{msg.dateStr | dateFormatFilter}}</span>
+      </p>
+      <p>
+      <span style="color: #363636;font-size: 14px;font-weight:normal" class="bubbleInner">{{msg.message}}</span>
+      </p>
     </div>
   </div>
 <div>

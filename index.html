@@ -43,8 +43,13 @@
                             <div class="navbar-collapse collapse sidebar-navbar-collapse" style="height:inherit">
                               <ul class="nav navbar-nav" style="height:inherit">
                                 <li
-                                ng-repeat="man in men track by $index"><a id="{{man}}" ui-draggable="true" drag="man"
-                                 ui-sref="{{man}}">  {{man}}</a></li>
+                                ng-repeat="man in men track by $index">
+                                <a id="{{man}}" ui-draggable="true" drag="man"
+                                 ui-sref="{{man}}">  {{man}}</a>
+                                </li>
+                              </ul>
+                              <ul>
+                                <li style="color:black;font-size: 14px;"><a href="javascript:void(0)" ng-click="logout()">Logout</a></li>
                               </ul>
                             </div><!--/.nav-collapse -->
                         </div>

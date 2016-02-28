@@ -1,5 +1,5 @@
 define(['jquery'], function($) {
-  return ['$scope','$state','$timeout','isUserValid', function($scope, $state, $timeout, isUserValid) {
+  return ['$scope','$state','$timeout','isUserValid', '$window', function($scope, $state, $timeout, isUserValid, $window) {
     isUserValid.check();
     $scope.men = [
     'chat',
@@ -15,5 +15,10 @@ define(['jquery'], function($) {
               }, 500);
           }
     };
+    /*Logout*/
+    $scope.logout = function() {
+      localStorage.clear();
+      $window.location.href= "login.html";
+    }
   }];
 });
