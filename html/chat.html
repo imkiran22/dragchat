@@ -1,9 +1,9 @@
 
 <div class="animated" id="chat-target">
   <h3 class="header-title">{{content.name}}</h3>
-  <textarea ng-model="content.msg" ng-keyup="send($event)"></textarea>
+  <!--<textarea ng-model="content.msg" ng-keyup="send($event)"></textarea>-->
 
-  <div class="main">
+  <div class="main" id="chat-window" style="overflow-x: hidden">
     <div ng-repeat="msg in messageTransferData" class="bubble" ng-class="(msg.userId == content.userId) ? 'imuser' : ''" accesskey=""
       ng-style="msg.userId == content.userId ? { 'background':'#2ECC71' } : { 'background':'#e9d460' }"
       <p>
@@ -15,4 +15,6 @@
       </p>
     </div>
   </div>
+  <!--content editable div-->
+  <div contenteditable="true" placeholder="Enter a message..." id="contentMessage" class="paytm" ng-keyup="send($event)">{{ person.name }}</div>
 <div>

@@ -57,5 +57,22 @@ margin: 10px;
 }
 .imuser {
   position: relative;
-  left: 560px;
+  left: 500px;
+}
+#contentMessage {
+  border-color: #2C0766;
+  border-width: 0 0 1.4px;
+  border-style:solid;
+  box-shadow: 0 0px 0px white inset, 0 0 0px white;
+  height: 60px;
+}
+#contentMessage:focus {
+  outline: 0 none;
+  border-color: #2C0766;
+  border-width: 0 0 2.4px;
+  box-shadow: 0 0px 0px white inset, 0 0 0px white;
+}
+[contenteditable=true]:empty:before {
+  content: attr(placeholder);
+  display: block; /* For Firefox */
 }

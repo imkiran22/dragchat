@@ -5,8 +5,12 @@ define(['jquery'], function($) {
     'chat',
     'profile'
     ];
+    $scope.logoutMe = 'logout';
     $scope.names = [];
     $scope.onDrop = function(event, data) {
+          if (data === 'logout') {
+             $scope.logout();
+          }
           var dragId = $(event.currentTarget.children).attr('id');
           if ($state.current.name !== data) {
               $("#" + dragId).addClass("bounceOutRight");
