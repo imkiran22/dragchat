@@ -32,15 +32,9 @@ define(['jquery'], function($) {
            $("#contentMessage").html("");
         }
      };
-     $scope.sendSmiley = function (src, flag) {
-         if (flag) {
-           if ($("#contentMessage").html() === "") {
+     $scope.sendSmiley = function (src) {
              $("#contentMessage").append('<img style="width: 30px;" src="'+ src + '"/>' );
              $("#contentMessage").focus();
-             return;
-           }
-           $("#contentMessage").append('<img style="width: 30px;" src="'+ src + '"/>' );
-         }
      };
      $timeout(function() {
          $("#chat-target").addClass('visible bounceInUp');
