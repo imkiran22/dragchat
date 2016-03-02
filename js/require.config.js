@@ -16,13 +16,17 @@ requirejs.config({
         angularMocks: 'lib/angular-mocks',
         unitTestService: 'service/unitTestService',
         isUserValid: 'service/isUserValid',
-        dateFormatFilter: 'filter/dateFormatFilter'
+        dateFormatFilter: 'filter/dateFormatFilter',
+        angularSanitize: 'lib/angular-sanitize'
     },
     shim: {
         angular: {
             exports: 'angular'
         },
         uiRouter: {
+          deps: ['angular']
+        },
+        angularSanitize: {
           deps: ['angular']
         },
         dragdrop: {

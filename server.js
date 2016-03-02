@@ -7,7 +7,7 @@ var url = require('url');
 var os = require("os");
 app.use(express.static(__dirname));
 app.get('/',function(req,res){
-  res.sendFile(path.join(__dirname+'login.html'));
+  res.sendFile(path.join(__dirname+'enter.html'));
 });
 
 var portServer = Number(process.env.PORT || 3000);

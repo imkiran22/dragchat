@@ -1,6 +1,8 @@
 define(['jquery'], function($) {
-   return ['$scope','$timeout', function($scope, $timeout) {
+   return ['$scope', '$timeout', '$sce', function($scope, $timeout, $sce) {
      $scope.content = {};
+     $scope.showSmiley = false;
+     $scope.smileyArray = ['smiley/smiley/1.png', 'smiley/smiley/32_1.png', 'smiley/smiley/32_2.png', 'smiley/clock/32_5.png'];
      $scope.content.name = localStorage.getItem("user.userName").substring(0, localStorage.getItem("user.userName").indexOf("~"));
      $scope.content.userId = localStorage.getItem("user.userId");
      $scope.messageTransferData = [];
@@ -11,6 +13,8 @@ define(['jquery'], function($) {
      //("#chat-window").height($(window).height() - 140);
      //Socket contenteditable
      socketio.on("message_to_client", function(data) {
+        //sanitising css class
+        data.message = $sce.trustAsHtml(data.message);
         $scope.messageTransferData.push(data);
         $scope.$apply();
         $("#chat-window").animate({scrollTop: $('#chat-window').prop("scrollHeight")}, 850);
@@ -21,10 +25,22 @@ define(['jquery'], function($) {
      });
      $scope.send = function (event) {
         if (event.keyCode === 13) {
-           socketio.emit("message_to_server", {userId: $scope.content.userId, userName: $scope.content.name, message : event.target.textContent, dateStr: new Date()});
+           var messageHTML = event.target.innerHTML.replace('<br><br>', "");
+           messageHTML = messageHTML.replace('<div><br></div>', "");
+           socketio.emit("message_to_server", {userId: $scope.content.userId, userName: $scope.content.name, message : $.trim(messageHTML), dateStr: new Date()});
            /*$scope.content.msg = "";*/
-           $("#contentMessage").text("");
+           $("#contentMessage").html("");
         }
+     };
+     $scope.sendSmiley = function (src, flag) {
+         if (flag) {
+           if ($("#contentMessage").html() === "") {
+             $("#contentMessage").append('<img style="width: 30px;" src="'+ src + '"/>' );
+             $("#contentMessage").focus();
+             return;
+           }
+           $("#contentMessage").append('<img style="width: 30px;" src="'+ src + '"/>' );
+         }
      };
      $timeout(function() {
          $("#chat-target").addClass('visible bounceInUp');

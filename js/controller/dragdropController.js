@@ -22,7 +22,7 @@ define(['jquery'], function($) {
     /*Logout*/
     $scope.logout = function() {
       localStorage.clear();
-      $window.location.href= "login.html";
+      $window.location.href= "enter.html";
     }
   }];
 });

@@ -53,7 +53,7 @@ margin: 10px;
   font-weight: bold;
 }
 .bubbleInner {
-	padding: 10px;
+	padding: 1 px;
 }
 .imuser {
   position: relative;
@@ -75,4 +75,15 @@ margin: 10px;
 [contenteditable=true]:empty:before {
   content: attr(placeholder);
   display: block; /* For Firefox */
+}
+.smiley {
+  outline: 0 none;
+  position: absolute;
+  bottom: 100px;
+  border-color: #F7CA18;
+  border-style: solid;
+  border-width: 2.4px 0 5.4px 0;
+  box-shadow: 0 0px 0px white inset, 0 0 0px white;
+  background: #363637;
+  padding: 3px;
 }

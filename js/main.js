@@ -1,6 +1,6 @@
-define(['angular', 'dragdropController','chatController' , 'profileController' , 'jquery','isUserValid' ,'dateFormatFilter' ,'dragdrop', 'uiRouter'], function(angular, dragdropController, chatController, profileController, $, isUserValid, dateFormatFilter) {
+define(['angular', 'dragdropController','chatController' , 'profileController' , 'jquery','isUserValid' ,'dateFormatFilter' ,'dragdrop', 'uiRouter', 'angularSanitize'], function(angular, dragdropController, chatController, profileController, $, isUserValid, dateFormatFilter, angularSanitize) {
    'use strict';
-   var app = angular.module('myApp', ['ui.router','ngDragDrop']);
+   var app = angular.module('myApp', ['ui.router','ngDragDrop', 'ngSanitize']);
    app.init = function () {
       angular.bootstrap(document, ['myApp']);
    };

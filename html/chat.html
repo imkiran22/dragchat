@@ -11,10 +11,17 @@
       <span style="float:right">{{msg.dateStr | dateFormatFilter}}</span>
       </p>
       <p>
-      <span style="color: #363636;font-size: 14px;font-weight:normal" class="bubbleInner">{{msg.message}}</span>
+      <span style="color: #363636;font-size: 14px;font-weight:normal" class="bubbleInner" ng-bind-html="msg.message"></span>
       </p>
     </div>
   </div>
-  <!--content editable div-->
-  <div contenteditable="true" placeholder="Enter a message..." id="contentMessage" class="paytm" ng-keyup="send($event)">{{ person.name }}</div>
+  <div contenteditable="true" placeholder="Enter a message..." id="contentMessage" class="paytm" ng-keyup="send($event)"></div><br>
+  <div ng-show="showSmiley" class="smiley">
+
+      <img ng-repeat="smg in smileyArray" ng-src="{{smg}}" style=" width: 40px;cursor: pointer" ng-click="sendSmiley(smg, true)"/>
+
+  </div>
 <div>
+  <div style="position:relative;z-index: 999;bottom:35px;cursor: pointer">
+    <i class="fa fa-smile-o fa-lg" ng-click="showSmiley=!showSmiley"></i>
+  </div>

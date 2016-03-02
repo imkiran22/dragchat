@@ -4,9 +4,11 @@
   <title>Crazy Chat</title>
   <!-- <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css"> -->
+  <!--<link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>-->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/animate.css" rel="stylesheet">
+  <!--<link href="css/font-awesome.min.css" rel="stylesheet">-->
   <style>
   /* make sidebar nav vertical */
 @media (min-width: 768px) {
@@ -28,12 +30,14 @@
   }
 }
 </style>
+<link href="css/font-awesome.min.css" rel="stylesheet">
   <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
   <script src="node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
   <script>
    var socketio = /*io.connect("nodechatkiran.herokuapp.com");*/io.connect("localhost:3000");
   </script>
   <script data-main="js/require.config" src="js/lib/require.js"></script>
+  </head>
 <body>
   <div class="container-fluid" ng-controller="dragdropController">
         <div class="row"  style="height:inherit">
