@@ -1,8 +1,8 @@
 define(['jquery'], function($) {
-   return ['$scope', '$timeout', '$sce', function($scope, $timeout, $sce) {
+   return ['$scope', '$timeout', '$sce', 'app', function($scope, $timeout, $sce, app) {
      $scope.content = {};
      $scope.showSmiley = false;
-     $scope.smileyArray = ['smiley/smiley/1.png', 'smiley/smiley/32_1.png', 'smiley/smiley/32_2.png', 'smiley/clock/32_5.png'];
+     /*$scope.smileyArray = ['smiley/smiley/1.png', 'smiley/smiley/32_1.png', 'smiley/smiley/32_2.png', 'smiley/clock/32_5.png'];*/
      $scope.content.name = localStorage.getItem("user.userName").substring(0, localStorage.getItem("user.userName").indexOf("~"));
      $scope.content.userId = localStorage.getItem("user.userId");
      $scope.messageTransferData = [];
@@ -14,7 +14,7 @@ define(['jquery'], function($) {
      //Socket contenteditable
      socketio.on("message_to_client", function(data) {
         //sanitising css class
-        data.message = $sce.trustAsHtml(data.message);
+        data.message = $sce.trustAsHtml(data.message.toString());
         $scope.messageTransferData.push(data);
         $scope.$apply();
         $("#chat-window").animate({scrollTop: $('#chat-window').prop("scrollHeight")}, 850);
@@ -39,5 +39,12 @@ define(['jquery'], function($) {
      $timeout(function() {
          $("#chat-target").addClass('visible bounceInUp');
      }, 200);
+     $scope.smileyArray = app.fileName;
+     /*$scope.getSmiley = function () {
+        smileyService.getSmiley().then(function (response) {
+           $scope.smileyArray = response.fileName;
+        });
+     };
+     $scope.getSmiley();*/
    }];
 });

@@ -1,4 +1,4 @@
-define(['angular', 'dragdropController','chatController' , 'profileController' , 'jquery','isUserValid' ,'dateFormatFilter' ,'dragdrop', 'uiRouter', 'angularSanitize'], function(angular, dragdropController, chatController, profileController, $, isUserValid, dateFormatFilter, angularSanitize) {
+define(['angular', 'dragdropController','chatController' , 'profileController' , 'jquery','isUserValid' ,'dateFormatFilter' ,'smileyService' ,'dragdrop', 'uiRouter', 'angularSanitize'], function(angular, dragdropController, chatController, profileController, $, isUserValid, dateFormatFilter,smileyService) {
    'use strict';
    var app = angular.module('myApp', ['ui.router','ngDragDrop', 'ngSanitize']);
    app.init = function () {
@@ -11,7 +11,14 @@ define(['angular', 'dragdropController','chatController' , 'profileController' ,
             $stateProvider.state('chat', {
                 url: "/chat",
                 templateUrl: "html/chat.html",
-                controller: 'chatController'
+                controller: 'chatController',
+                resolve: {
+                  app: function(smileyService) {
+                    return smileyService.getSmiley().then(function (response) {
+                       return response;
+                    });
+                  }
+                }
             }).state('profile', {
                 url: "/profile",
                 templateUrl: "html/profile.html",
@@ -22,6 +29,7 @@ define(['angular', 'dragdropController','chatController' , 'profileController' ,
    app.controller('profileController', profileController);
    app.controller('dragdropController', dragdropController);
    app.service('isUserValid', isUserValid);
+   app.service('smileyService', smileyService);
    app.filter('dateFormatFilter', dateFormatFilter);
    return app;
 });

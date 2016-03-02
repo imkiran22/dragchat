@@ -14,10 +14,10 @@ requirejs.config({
         emptyCheckFilter: 'filter/emptyCheckFilter',
         globalDirective: 'directive/globalDirective',
         angularMocks: 'lib/angular-mocks',
-        unitTestService: 'service/unitTestService',
         isUserValid: 'service/isUserValid',
         dateFormatFilter: 'filter/dateFormatFilter',
-        angularSanitize: 'lib/angular-sanitize'
+        angularSanitize: 'lib/angular-sanitize',
+        smileyService: 'service/smileyService'
     },
     shim: {
         angular: {

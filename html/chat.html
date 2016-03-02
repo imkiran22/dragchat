@@ -17,9 +17,11 @@
   </div>
   <div contenteditable="true" placeholder="Enter a message..." id="contentMessage" class="paytm" ng-keyup="send($event)"></div><br>
   <div ng-show="showSmiley" class="smiley">
-
-      <img ng-repeat="smg in smileyArray" ng-src="{{smg}}" style=" width: 40px;cursor: pointer" ng-click="sendSmiley(smg)"/>
-
+      <div ng-repeat = "xImg in smileyArray">
+         <span ng-repeat = "smg in xImg">
+           <img ng-src="{{smg}}" title="{{smg}}" style=" width: 40px;cursor: pointer" ng-click="sendSmiley(smg)"/>
+         </span>
+      </div>
   </div>
 <div>
   <div style="position:relative;z-index: 999;bottom:35px;cursor: pointer">
