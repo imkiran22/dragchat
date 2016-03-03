@@ -1,5 +1,5 @@
 define(['jquery'], function($) {
-   return ['$scope', '$timeout', '$sce', 'app', function($scope, $timeout, $sce, app) {
+   return ['$scope', '$timeout', '$sce', 'app','smileyService', function($scope, $timeout, $sce, app, smileyService) {
      $scope.content = {};
      $scope.showSmiley = false;
      /*$scope.smileyArray = ['smiley/smiley/1.png', 'smiley/smiley/32_1.png', 'smiley/smiley/32_2.png', 'smiley/clock/32_5.png'];*/
@@ -28,7 +28,12 @@ define(['jquery'], function($) {
            var messageHTML = event.target.innerHTML.replace('<br><br>', "");
            messageHTML = messageHTML.replace('<div><br></div>', "");
            socketio.emit("message_to_server", {userId: $scope.content.userId, userName: $scope.content.name, message : $.trim(messageHTML), dateStr: new Date()});
-           /*$scope.content.msg = "";*/
+           /*Send to MongoDB*/
+           smileyService.insertResult(
+              {userId: $scope.content.userId, userName: $scope.content.name, message : $.trim(messageHTML), dateStr: new Date()}
+           ).then(function(response) {
+              console.log("Inserted One chat row", response);
+           });
            $("#contentMessage").html("");
         }
      };
@@ -40,11 +45,12 @@ define(['jquery'], function($) {
          $("#chat-target").addClass('visible bounceInUp');
      }, 200);
      $scope.smileyArray = app.fileName;
-     /*$scope.getSmiley = function () {
-        smileyService.getSmiley().then(function (response) {
-           $scope.smileyArray = response.fileName;
+     /*Retrieve Chat*/
+     $scope.selectResult = function () {
+        smileyService.selectResult().then(function (response) {
+           $scope.messageTransferData = response;
         });
      };
-     $scope.getSmiley();*/
+     $scope.selectResult();
    }];
 });

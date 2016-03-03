@@ -6,12 +6,29 @@ var path = require("path");
 var fs = require("fs");
 var url = require('url');
 var os = require("os");
+var mongoDbService = require("./server/mongoDbService");
 var arr = [], mainArr = [], jsonObj = {};
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(express.static(__dirname));
-app.get('/',function(req,res){
+app.get('/',function(req, res){
   res.sendFile(path.join(__dirname+'enter.html'));
+});
+/*selectResult*/
+app.get('/selectResult', function(req, res){
+  /*var queryObject = url.parse(req.url, true).query;*/
+  mongoDbService.selectResult(req, res);
+});
+/*insertResult*/
+app.post('/insertResult', function(req, res){
+  var queryObject = {
+		userId: req.body.userId,
+		userName: req.body.userName,
+		message: req.body.message,
+		dateStr: req.body.dateStr
+	};
+  /*console.log(JSON.stringify(queryObject));*/
+  mongoDbService.insertResult(req, res, queryObject);
 });
 app.get('/smiley', function(req, res) {
   arr = [], mainArr = [], jsonObj = {};

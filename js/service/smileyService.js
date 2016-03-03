@@ -24,8 +24,26 @@ define([], function() {
                     // Otherwise, use expected error message.
                     return( $q.reject( response.data.message ) );
     }
+    function insertResult(query) {
+      var request = $http({
+                        method: "post",
+                        url: "insertResult",
+                        data: query
+                      });
+      return( request.then( handleSuccess, handleError ) );
+    }
+    function selectResult() {
+      var request = $http({
+                        method: "get",
+                        url: "selectResult"/*,
+                        data: query*/
+                      });
+      return( request.then( handleSuccess, handleError ) );
+    }
     return ({
-      getSmiley: getSmiley
+      getSmiley: getSmiley,
+      insertResult: insertResult,
+      selectResult: selectResult
     });
   }];
 })
