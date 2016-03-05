@@ -1,0 +1,22 @@
+<div class="animated" id="chat-target">
+<!--Inject Your View Here -->
+<div class="navbar-collapse collapse sidebar-navbar-collapse" style="height:inherit" ui-view>
+
+  <div class="input-prepend">
+    <input class="paytm" type="text" id="group" ng-model="group" ng-keypress="triggerClick($event)" placeholder="Enter New Group">
+    <label class="text-danger" ng-show="error">Enter a name / Enter more than 2 letters</label>
+    <a class="btn btn-sm btn-default" ng-click="createNewGroup(group)">
+    <i class="fa fa-plus"></i> Create</a>
+  </div>
+<div ng-show="success">
+  <h3>Created Successfully</h3>
+</div>
+<h2> Groups </h2>
+  <ul class="nav navbar-nav" style="height:inherit">
+    <li
+    ng-repeat="x in chatRoomList">
+    <a ui-sref="chat.hub({chatId: x.groupId })" style="cursor: pointer">{{x.groupName}}</a><br>
+    </li>
+  </ul>
+</div><!--/.nav-collapse -->
+</div>

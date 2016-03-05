@@ -3,9 +3,10 @@ define(['jquery'], function($) {
     isUserValid.check();
     $scope.men = [
     'chat',
-    'profile'
+    'profile',
+    'logout'
     ];
-    $scope.logoutMe = 'logout';
+    /*$scope.logoutMe = 'logout';*/
     $scope.names = [];
     $scope.onDrop = function(event, data) {
           if (data === 'logout') {

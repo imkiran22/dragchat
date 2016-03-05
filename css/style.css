@@ -36,8 +36,8 @@ html,body, .container-fluid {
 	background-color: #674172;
 	padding: 20px;
 	margin-top: -10px;
-	margin-left: -28px;
-	margin-right: -32px;
+	margin-left: -42px;
+	margin-right: -45px;
   color: #ffffff;
 }
 .bubble {
@@ -59,14 +59,14 @@ margin: 10px;
   position: relative;
   left: 500px;
 }
-#contentMessage {
+#contentMessage, .paytm {
   border-color: #2C0766;
   border-width: 0 0 1.4px;
   border-style:solid;
   box-shadow: 0 0px 0px white inset, 0 0 0px white;
   height: 60px;
 }
-#contentMessage:focus {
+#contentMessage, .paytm:focus {
   outline: 0 none;
   border-color: #2C0766;
   border-width: 0 0 2.4px;

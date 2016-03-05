@@ -9,6 +9,7 @@ requirejs.config({
         main: 'main',
         dragdrop: 'lib/angular-dragdrop',
         dragdropController: 'controller/dragdropController',
+        mainChatController: 'controller/mainChatController',
         chatController: 'controller/chatController',
         profileController: 'controller/profileController',
         emptyCheckFilter: 'filter/emptyCheckFilter',
@@ -17,7 +18,8 @@ requirejs.config({
         isUserValid: 'service/isUserValid',
         dateFormatFilter: 'filter/dateFormatFilter',
         angularSanitize: 'lib/angular-sanitize',
-        smileyService: 'service/smileyService'
+        smileyService: 'service/smileyService',
+        removeTilda: 'filter/removeTilda'
     },
     shim: {
         angular: {

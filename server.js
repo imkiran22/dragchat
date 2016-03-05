@@ -15,21 +15,32 @@ app.get('/',function(req, res){
   res.sendFile(path.join(__dirname+'enter.html'));
 });
 /*selectResult*/
-app.get('/selectResult', function(req, res){
-  /*var queryObject = url.parse(req.url, true).query;*/
-  mongoDbService.selectResult(req, res);
+app.get('/selectResult', function(req, res) {
+  var queryObject = url.parse(req.url, true).query;
+  /*console.log("Query " + JSON.stringify(queryObject));*/
+  mongoDbService.selectResult(req, res, queryObject);
 });
 /*insertResult*/
-app.post('/insertResult', function(req, res){
+app.post('/insertResult', function(req, res) {
   var queryObject = {
 		userId: req.body.userId,
 		userName: req.body.userName,
 		message: req.body.message,
-		dateStr: req.body.dateStr
+		dateStr: req.body.dateStr,
+    chatId: req.body.chatId
 	};
-  /*console.log(JSON.stringify(queryObject));*/
+/*  console.log("Server JS   "+ JSON.stringify(queryObject));*/
   mongoDbService.insertResult(req, res, queryObject);
 });
+app.post('/createNewGroup', function(req, res) {
+   var queryObject = {
+     groupId: req.body.groupId,
+     groupName: req.body.groupName,
+     date: req.body.date,
+     creator: req.body.creator
+   };
+   mongoDbService.createNewGroup(req, res, queryObject);
+})
 app.get('/smiley', function(req, res) {
   arr = [], mainArr = [], jsonObj = {};
   var filesName = getFiles('smiley');
@@ -42,6 +53,9 @@ app.get('/smiley', function(req, res) {
   temp.shift();
   jsonObj.fileName = temp;
   res.send(jsonObj);
+});
+app.get('/getChatRoomList', function(req, res) {
+  mongoDbService.getChatRoomList(req, res);
 });
 var portServer = Number(process.env.PORT || 3000);
 var server = app.listen(portServer, function () {
@@ -74,7 +88,9 @@ function getFiles (dir, files_){
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
     socket.on('message_to_server', function(data) {
-        io.sockets.emit("message_to_client",{userId: data.userId, userName: data.userName, message: data.message, dateStr: data.dateStr});
+        socket.join(data.chatId);
+        /*console.log(data.chatId);*/
+        io.sockets.in(data.chatId).emit("message_to_client", data);
       //   fs.open('file.txt', 'a', 666, function( e, id ) {
 	    // 	fs.write(id, data.userName + "~" + data.message + "~" + data.messageDate + "~" + data.userId + "~" + os.EOL, null, 'utf8', function() {
 	    // 		fs.close(id, function(){
@@ -84,7 +100,7 @@ io.sockets.on('connection', function(socket) {
     	// });
     });
     socket.on('userJoined_to_server', function (data) {
-       console.log(JSON.stringify(data));
-       io.sockets.emit('userJoined_to_client', {userId: data.userId, userName: data.userName,message: data.message, dateStr: data.dateStr})
+       /*console.log(JSON.stringify(data));*/
+       io.sockets.emit('userJoined_to_client', data)
     });
 });

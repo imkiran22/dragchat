@@ -1,8 +1,8 @@
 define(['jquery'], function($) {
-   return ['$scope', '$timeout', '$sce', 'app','smileyService', function($scope, $timeout, $sce, app, smileyService) {
+   return ['$scope','$stateParams', '$timeout', '$sce', 'app','smileyService', function($scope, $stateParams, $timeout, $sce, app, smileyService) {
      $scope.content = {};
+     $scope.chatId = $stateParams.chatId;
      $scope.showSmiley = false;
-     /*$scope.smileyArray = ['smiley/smiley/1.png', 'smiley/smiley/32_1.png', 'smiley/smiley/32_2.png', 'smiley/clock/32_5.png'];*/
      $scope.content.name = localStorage.getItem("user.userName").substring(0, localStorage.getItem("user.userName").indexOf("~"));
      $scope.content.userId = localStorage.getItem("user.userId");
      $scope.messageTransferData = [];
@@ -14,6 +14,9 @@ define(['jquery'], function($) {
      //Socket contenteditable
      socketio.on("message_to_client", function(data) {
         //sanitising css class
+        if (data.chatId !== $scope.chatId) {
+          return ;
+        }
         data.message = $sce.trustAsHtml(data.message.toString());
         $scope.messageTransferData.push(data);
         $scope.$apply();
@@ -27,12 +30,12 @@ define(['jquery'], function($) {
         if (event.keyCode === 13) {
            var messageHTML = event.target.innerHTML.replace('<br><br>', "");
            messageHTML = messageHTML.replace('<div><br></div>', "");
-           socketio.emit("message_to_server", {userId: $scope.content.userId, userName: $scope.content.name, message : $.trim(messageHTML), dateStr: new Date()});
+           socketio.emit("message_to_server", {userId: $scope.content.userId, userName: $scope.content.name, message : $.trim(messageHTML), dateStr: new Date(), chatId: $scope.chatId});
            /*Send to MongoDB*/
            smileyService.insertResult(
-              {userId: $scope.content.userId, userName: $scope.content.name, message : $.trim(messageHTML), dateStr: new Date()}
+              {userId: $scope.content.userId, userName: $scope.content.name, message : $.trim(messageHTML), dateStr: new Date(), chatId: $scope.chatId}
            ).then(function(response) {
-              console.log("Inserted One chat row", response);
+              console.log("Inserted One chat row ", response);
            });
            $("#contentMessage").html("");
         }
@@ -47,7 +50,7 @@ define(['jquery'], function($) {
      $scope.smileyArray = app.fileName;
      /*Retrieve Chat*/
      $scope.selectResult = function () {
-        smileyService.selectResult().then(function (response) {
+        smileyService.selectResult($scope.chatId).then(function (response) {
            $scope.messageTransferData = response;
         });
      };

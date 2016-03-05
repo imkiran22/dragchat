@@ -8,7 +8,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/animate.css" rel="stylesheet">
-  <!--<link href="css/font-awesome.min.css" rel="stylesheet">-->
+  <link href="css/font-awesome.min.css" rel="stylesheet">
   <style>
   /* make sidebar nav vertical */
 @media (min-width: 768px) {
@@ -48,13 +48,14 @@
                               <ul class="nav navbar-nav" style="height:inherit">
                                 <li
                                 ng-repeat="man in men track by $index">
-                                <a id="{{man}}" ui-draggable="true" drag="man"
-                                 ui-sref="{{man}}">  {{man}}</a>
+                                <span ng-if="man != 'logout'"><a id="{{man}}" ui-draggable="true" drag="man"
+                                 ui-sref="{{man}}">{{man}}</a></span> <br>
+                                 <span ng-if="man == 'logout'" style="cursor:pointer"><a id="{{man}}" ng-click="logout()" ui-draggable="true" drag="man">{{man}}</a></span><br>
                                 </li>
                               </ul>
-                              <ul>
+                              <!--<ul>
                                 <li style="color:black;font-size: 14px;cursor: pointer"><a id="{{logoutMe}}" ui-draggable="true" drag="logoutMe" ng-click="logout()">{{logoutMe}}</a></li>
-                              </ul>
+                              </ul>-->
                             </div><!--/.nav-collapse -->
                         </div>
                       </div>

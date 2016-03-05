@@ -32,18 +32,35 @@ define([], function() {
                       });
       return( request.then( handleSuccess, handleError ) );
     }
-    function selectResult() {
+    function selectResult(chatId) {
       var request = $http({
                         method: "get",
-                        url: "selectResult"/*,
+                        url: "selectResult?chatId=" + chatId/*,
                         data: query*/
+                      });
+      return( request.then( handleSuccess, handleError ) );
+    }
+    function createNewGroup(group) {
+      var request = $http({
+                        method: "post",
+                        url: "createNewGroup",
+                        data: group
+                      });
+      return( request.then( handleSuccess, handleError ) );
+    }
+    function getChatRoomList() {
+      var request = $http({
+                        method: "get",
+                        url: "getChatRoomList"
                       });
       return( request.then( handleSuccess, handleError ) );
     }
     return ({
       getSmiley: getSmiley,
       insertResult: insertResult,
-      selectResult: selectResult
+      selectResult: selectResult,
+      createNewGroup: createNewGroup,
+      getChatRoomList: getChatRoomList
     });
   }];
 })
