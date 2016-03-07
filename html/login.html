@@ -1,12 +1,31 @@
 <div style="margin: 10px">
-       <form class="form-horizontal" method="post" ng-submit="login(user.username,user.password)" >
+       <form class="form-horizontal" name="userReg">
                      <div class="form-group">
                        <label for="UserName" style="font-size:30px;color:black;" class="control-label col-sm-4">Enter a name</label>
                        <div class="col-sm-6" style="margin-top:10px">
-                       <input type="text" class="form-control" name="UserName" id="UserName" placeholder="Your Name" ng-model="userName" ng-keypress="keyEnter($event)" required>
+                       <input type="text" class="form-control paytm" name="UserName" id="UserName" placeholder="Your Name" ng-model="user.userName" ng-keypress="keyEnter($event)" ng-required>
                      </div>
                      <label class="text-danger" ng-show="error">Enter a name / Enter more than 2 letters</label>
                      </div>
+
+                     <!-- -->
+                     <div class="form-group">
+                       <label for="mobile" style="font-size:30px;color:black;" class="control-label col-sm-4">Enter Mobile Number</label>
+                     <div class="col-sm-6" style="margin-top:10px">
+                      <input type="text" class="form-control paytm" name="mobile" id="mobile" placeholder="Your 10 digit number" ng-model="user.mobile" ng-keypress="keyEnter($event)"  ng-minlength=10 ng-maxlength=10 ng-required="true">
+                     </div>
+                     <!-- Start-->
+                             <span ng-show="userReg.$submitted || userReg.mobile.$touched">
+                                <span ng-show="userReg.mobile.$error.required" class="paytm-text-danger">Tell us the number</span>
+                             </span>
+                             <span class="text-danger" ng-show="userReg.mobile.$error.minlength">
+                              Mobile Number cannot be lesser than 10</span>
+                            <span class="text-danger" ng-show="userReg.mobile.$error.maxlength">
+                              Mobile Number cannot be greater than 10</span>
+                             <!-- End-->
+                     </div>
+                     <!-- -->
+
                      <div class="form-group col-sm-12">
 
                      </div>

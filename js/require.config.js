@@ -19,7 +19,9 @@ requirejs.config({
         dateFormatFilter: 'filter/dateFormatFilter',
         angularSanitize: 'lib/angular-sanitize',
         smileyService: 'service/smileyService',
-        removeTilda: 'filter/removeTilda'
+        removeTilda: 'filter/removeTilda',
+        contactsController: 'controller/contactsController',
+        contactDirective: 'directive/contactDirective'
     },
     shim: {
         angular: {

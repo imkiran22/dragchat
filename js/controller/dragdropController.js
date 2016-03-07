@@ -4,6 +4,7 @@ define(['jquery'], function($) {
     $scope.men = [
     'chat',
     'profile',
+    'contacts',
     'logout'
     ];
     /*$scope.logoutMe = 'logout';*/

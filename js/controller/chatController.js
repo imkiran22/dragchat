@@ -2,6 +2,7 @@ define(['jquery'], function($) {
    return ['$scope','$stateParams', '$timeout', '$sce', 'app','smileyService', function($scope, $stateParams, $timeout, $sce, app, smileyService) {
      $scope.content = {};
      $scope.chatId = $stateParams.chatId;
+
      $scope.showSmiley = false;
      $scope.content.name = localStorage.getItem("user.userName").substring(0, localStorage.getItem("user.userName").indexOf("~"));
      $scope.content.userId = localStorage.getItem("user.userId");
@@ -20,12 +21,17 @@ define(['jquery'], function($) {
         data.message = $sce.trustAsHtml(data.message.toString());
         $scope.messageTransferData.push(data);
         $scope.$apply();
-        $("#chat-window").animate({scrollTop: $('#chat-window').prop("scrollHeight")}, 850);
+        animate();
      });
      socketio.on("userJoined_to_client", function(data) {
         $scope.messageTransferData.push(data);
         $scope.$apply();
+        animate();
      });
+
+     function animate() {
+        $("#chat-window").animate({scrollTop: $('#chat-window').prop("scrollHeight")}, 1500);
+     }
      $scope.send = function (event) {
         if (event.keyCode === 13) {
            var messageHTML = event.target.innerHTML.replace('<br><br>', "");
@@ -43,6 +49,7 @@ define(['jquery'], function($) {
      $scope.sendSmiley = function (src) {
              $("#contentMessage").append('<img style="width: 30px;" src="'+ src + '"/>' );
              $("#contentMessage").focus();
+             $scope.showSmiley = false;
      };
      $timeout(function() {
          $("#chat-target").addClass('visible bounceInUp');
@@ -52,6 +59,7 @@ define(['jquery'], function($) {
      $scope.selectResult = function () {
         smileyService.selectResult($scope.chatId).then(function (response) {
            $scope.messageTransferData = response;
+           socketio.emit("userJoined_to_server", {userId: localStorage.getItem("user.userId"), userName: localStorage.getItem("user.userName").substring(0, localStorage.getItem("user.userName").indexOf("~")), message : "Joined the chat", dateStr: new Date(), chatId: $scope.chatId});
         });
      };
      $scope.selectResult();

@@ -6,7 +6,7 @@ var path = require("path");
 var fs = require("fs");
 var url = require('url');
 var os = require("os");
-var mongoDbService = require("./server/mongoDbService");
+var mongoDbService = require("./server/mongoDbService"), userListService = require("./server/userListService");
 var arr = [], mainArr = [], jsonObj = {};
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -57,6 +57,10 @@ app.get('/smiley', function(req, res) {
 app.get('/getChatRoomList', function(req, res) {
   mongoDbService.getChatRoomList(req, res);
 });
+app.get('/getUserList', function(req, res) {
+  var queryObject = url.parse(req.url, true).query;
+  userListService.getUserList(req, res, queryObject);
+});
 var portServer = Number(process.env.PORT || 3000);
 var server = app.listen(portServer, function () {
   var host = server.address().address
@@ -101,6 +105,7 @@ io.sockets.on('connection', function(socket) {
     });
     socket.on('userJoined_to_server', function (data) {
        /*console.log(JSON.stringify(data));*/
-       io.sockets.emit('userJoined_to_client', data)
+       socket.join(data.chatId);
+       io.sockets.in(data.chatId).emit('userJoined_to_client', data)
     });
 });

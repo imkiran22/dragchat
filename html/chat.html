@@ -15,7 +15,7 @@
       </p>
     </div>
   </div>
-  <div contenteditable="true" placeholder="Enter a message..." id="contentMessage" class="paytm" ng-keyup="send($event)"></div><br>
+  <div contenteditable="true" onfocus="this.value = this.value;" placeholder="Enter a message..." id="contentMessage" class="paytm" ng-keyup="send($event)"></div><br>
   <div ng-show="showSmiley" class="smiley">
       <div ng-repeat = "xImg in smileyArray">
          <span ng-repeat = "smg in xImg">

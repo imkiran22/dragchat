@@ -1,4 +1,4 @@
-define(['angular', 'dragdropController','mainChatController', 'chatController' , 'profileController' , 'jquery','isUserValid' ,'dateFormatFilter' ,'smileyService' , 'removeTilda', 'dragdrop', 'uiRouter', 'angularSanitize'], function(angular, dragdropController, mainChatController, chatController, profileController, $, isUserValid, dateFormatFilter,smileyService, removeTilda) {
+define(['angular','contactDirective', 'dragdropController','contactsController', 'mainChatController', 'chatController' , 'profileController' , 'jquery','isUserValid' ,'dateFormatFilter' ,'smileyService' , 'removeTilda', 'dragdrop', 'uiRouter', 'angularSanitize'], function(angular, contactDirective, dragdropController,contactsController, mainChatController, chatController, profileController, $, isUserValid, dateFormatFilter,smileyService, removeTilda) {
    'use strict';
    var app = angular.module('myApp', ['ui.router','ngDragDrop', 'ngSanitize']);
    app.init = function () {
@@ -27,15 +27,21 @@ define(['angular', 'dragdropController','mainChatController', 'chatController' ,
                 });
               }
             }
+        }).state('contacts', {
+          url: '/contacts',
+          templateUrl: 'html/contact.html',
+          controller: 'contactsController'
         });
    }]);
    app.controller('mainChatController', mainChatController);
    app.controller('chatController', chatController);
+   app.controller('contactsController', contactsController);
    app.controller('profileController', profileController);
    app.controller('dragdropController', dragdropController);
    app.service('isUserValid', isUserValid);
    app.service('smileyService', smileyService);
    app.filter('dateFormatFilter', dateFormatFilter);
    app.filter('removeTilda', removeTilda);
+   app.directive('contactDirective', contactDirective);
    return app;
 });
