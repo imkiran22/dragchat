@@ -7,12 +7,12 @@ var fs = require("fs");
 var url = require('url');
 var os = require("os");
 var mongoDbService = require("./server/mongoDbService"), userListService = require("./server/userListService");
-var arr = [], mainArr = [], jsonObj = {};
+var arr = [], mainArr = [], jsonObj = {}, users = {};
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(express.static(__dirname));
 app.get('/',function(req, res){
-  res.sendFile(path.join(__dirname+'enter.html'));
+  res.sendFile(path.join(__dirname+'index.html'));
 });
 /*selectResult*/
 app.get('/selectResult', function(req, res) {
@@ -104,8 +104,29 @@ io.sockets.on('connection', function(socket) {
     	// });
     });
     socket.on('userJoined_to_server', function (data) {
-       /*console.log(JSON.stringify(data));*/
-       socket.join(data.chatId);
-       io.sockets.in(data.chatId).emit('userJoined_to_client', data)
+       users[data.userId] = socket.id;
+       console.log("User Joined ~ " + data.userId);
+       /*socket.join(data.userId);*/
     });
+    socket.on('privateMessage', function(data, callback) {
+        console.log(JSON.stringify(data));
+        if (data.to in users) {
+           io.to(users[data.to]).emit("new_priv_msg", data);
+           /*io.to(users[data.from]).emit("new_priv_msg", data);*/
+        } else {
+            callback("User is not connected");
+        }
+        /*socket.join(data.to);*/
+        /*socket.broadcast.to(id).emit('my message', msg);*/
+        /*io.sockets.in(data.from).emit("new_priv_msg", data);*/
+    });
+    // when the user disconnects.. perform this
+  	socket.on('disconnect', function(){
+  		// remove the username from global usernames list
+      console.log("User left ~ ");
+
+      /*delete users[data.userId];*/
+  		// echo globally that this client has left
+  		/*socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');*/
+  	});
 });

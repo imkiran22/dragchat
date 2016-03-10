@@ -8,6 +8,7 @@ requirejs.config({
         uiRouter: 'lib/angular-ui-router',
         main: 'main',
         dragdrop: 'lib/angular-dragdrop',
+        loginController: 'controller/loginController',
         dragdropController: 'controller/dragdropController',
         mainChatController: 'controller/mainChatController',
         chatController: 'controller/chatController',
@@ -21,6 +22,7 @@ requirejs.config({
         smileyService: 'service/smileyService',
         removeTilda: 'filter/removeTilda',
         contactsController: 'controller/contactsController',
+        privateController: 'controller/privateController',
         contactDirective: 'directive/contactDirective'
     },
     shim: {

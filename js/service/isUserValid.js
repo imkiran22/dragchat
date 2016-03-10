@@ -1,5 +1,5 @@
 define([], function() {
-  return ['$window','$http','$q', function ($window, $http, $q) {
+  return ['$http','$q','$state', function ($http, $q, $state) {
     function handleSuccess( response ) {
             return( response.data );
     }
@@ -29,7 +29,8 @@ define([], function() {
     return {
       check: function () {
         if (localStorage.getItem("user.userName") === null || localStorage.getItem("user.userName") === undefined || localStorage.getItem("user.userName") === "") {
-            $window.location.href= "enter.html";
+            /*$window.location.href= "enter.html";*/
+            $state.go('login');
         }
       },
       getUserList: getUserList

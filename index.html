@@ -29,6 +29,19 @@
     padding-bottom: 12px;
   }
 }
+.paytm {
+  border-color: #2C0766;
+  border-width: 0 0 1.4px;
+  border-style:solid;
+  box-shadow: 0 0px 0px white inset, 0 0 0px white;
+  height: 60px;
+}
+.paytm:focus {
+  outline: 0 none;
+  border-color: #2C0766;
+  border-width: 0 0 2.4px;
+  box-shadow: 0 0px 0px white inset, 0 0 0px white;
+}
 </style>
 <link href="css/font-awesome.min.css" rel="stylesheet">
   <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
@@ -39,31 +52,8 @@
   <script data-main="js/require.config" src="js/lib/require.js"></script>
   </head>
 <body>
-  <div class="container-fluid" ng-controller="dragdropController">
-        <div class="row"  style="height:inherit">
-            <div class="col-md-3" style="height:inherit">
-                        <div class="sidebar-nav" style="height:inherit">
-                          <div class="navbar navbar-default" role="navigation" style="height:inherit;padding: 10px;margin: 10px">
-                            <div class="navbar-collapse collapse sidebar-navbar-collapse" style="height:inherit">
-                              <ul class="nav navbar-nav" style="height:inherit">
-                                <li
-                                ng-repeat="man in men track by $index">
-                                <span ng-if="man != 'logout'"><a id="{{man}}" ui-draggable="true" drag="man"
-                                 ui-sref="{{man}}">{{man}}</a></span> <br>
-                                 <span ng-if="man == 'logout'" style="cursor:pointer"><a id="{{man}}" ng-click="logout()" ui-draggable="true" drag="man">{{man}}</a></span><br>
-                                </li>
-                              </ul>
-                              <!--<ul>
-                                <li style="color:black;font-size: 14px;cursor: pointer"><a id="{{logoutMe}}" ui-draggable="true" drag="logoutMe" ng-click="logout()">{{logoutMe}}</a></li>
-                              </ul>-->
-                            </div><!--/.nav-collapse -->
-                        </div>
-                      </div>
-                    </div>
-            <div class="col-md-9" id="droppable" ui-on-Drop="onDrop($event, $data)" drag-enter-class="on-drag-enter-custom" drag-hover-class="on-drag-hover-custom" ui-view style="height: inherit;margin-left: -17px;padding-left: 30px;padding-top: 10px">
+  <div class="container-fluid" ui-view>
 
-            </div>
-        </div>
-    </div>
+  </div>
 </body>
 </html>

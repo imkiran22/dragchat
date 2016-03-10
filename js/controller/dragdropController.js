@@ -2,10 +2,19 @@ define(['jquery'], function($) {
   return ['$scope','$state','$timeout','isUserValid', '$window', function($scope, $state, $timeout, isUserValid, $window) {
     isUserValid.check();
     $scope.men = [
-    'chat',
-    'profile',
-    'contacts',
-    'logout'
+    {
+      name: "chat",
+      path: 'base.chat'
+    }, {
+      name: "profile",
+      path: 'base.profile'
+    }, {
+      name: "contacts",
+      path: 'base.contacts'
+    }, {
+      name: "logout",
+      path: ''
+    }
     ];
     /*$scope.logoutMe = 'logout';*/
     $scope.names = [];
@@ -23,8 +32,10 @@ define(['jquery'], function($) {
     };
     /*Logout*/
     $scope.logout = function() {
-      localStorage.clear();
-      $window.location.href= "enter.html";
-    }
+      socketio.emit('disconnect');
+      /*localStorage.clear();
+      $state.go('login');*/
+      /*$window.location.href= "enter.html";*/
+    };
   }];
 });

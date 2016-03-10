@@ -1,13 +1,15 @@
+<div ui-view>
 <div class="">
    <input type="text" id="userList" class="form-control" ng-model="user.keyword" placeholder="Search.." ng-change="getUserList()"/>
 </div>
 <div class="well well-lg" ng-show="list.length">
   <ul style="list-style-type: none;cursor:pointer">
     <li ng-repeat= "user in list" style="margin:10px;padding:10px">
-      <a ng-click="connect(user)">{{user.userName}}</a>
+      <a ui-sref="base.contacts.private({userId: user.userId })" style="cursor: pointer">{{user.userName}}</a>
     </li>
   </ul>
 </div>
 <div class="jumbotron" ng-show="list.userNotFound">
   <h2>No persons found</h2>
+</div>
 </div>

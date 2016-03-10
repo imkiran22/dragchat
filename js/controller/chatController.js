@@ -59,7 +59,6 @@ define(['jquery'], function($) {
      $scope.selectResult = function () {
         smileyService.selectResult($scope.chatId).then(function (response) {
            $scope.messageTransferData = response;
-           socketio.emit("userJoined_to_server", {userId: localStorage.getItem("user.userId"), userName: localStorage.getItem("user.userName").substring(0, localStorage.getItem("user.userName").indexOf("~")), message : "Joined the chat", dateStr: new Date(), chatId: $scope.chatId});
         });
      };
      $scope.selectResult();
