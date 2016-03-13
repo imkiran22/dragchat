@@ -34,7 +34,14 @@ define(['angular', 'loginController', 'contactDirective','privateController', 'd
         }).state('base.contacts.private', {
           url: '/:userId',
           templateUrl: 'html/private.html',
-          controller: 'privateController'
+          controller: 'privateController',
+          resolve: {
+            app: function(smileyService) {
+              return smileyService.getSmiley().then(function (response) {
+                 return response;
+              });
+            }
+          }
         }).state('login', {
             url: "/login",
             templateUrl: "html/login.html",

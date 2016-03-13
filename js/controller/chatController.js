@@ -36,6 +36,7 @@ define(['jquery'], function($) {
         if (event.keyCode === 13) {
            var messageHTML = event.target.innerHTML.replace('<br><br>', "");
            messageHTML = messageHTML.replace('<div><br></div>', "");
+           if (messageHTML !== "" && !messageHTML.startsWith("<div><br></div>")) {
            socketio.emit("message_to_server", {userId: $scope.content.userId, userName: $scope.content.name, message : $.trim(messageHTML), dateStr: new Date(), chatId: $scope.chatId});
            /*Send to MongoDB*/
            smileyService.insertResult(
@@ -44,6 +45,7 @@ define(['jquery'], function($) {
               console.log("Inserted One chat row ", response);
            });
            $("#contentMessage").html("");
+         }
         }
      };
      $scope.sendSmiley = function (src) {

@@ -32,9 +32,9 @@ define(['jquery'], function($) {
     };
     /*Logout*/
     $scope.logout = function() {
-      socketio.emit('disconnect');
-      /*localStorage.clear();
-      $state.go('login');*/
+      socketio.emit('disconnect_user', {userId: localStorage.getItem("user.mobile"), userName: localStorage.getItem("user.userName")});
+      localStorage.clear();
+      $state.go('login');
       /*$window.location.href= "enter.html";*/
     };
   }];

@@ -24,3 +24,20 @@ this.getUserList = function (req, res, queryObject) {
     }
   });
 }
+this.getUserListOnLoad = function (req, res) {
+  MongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      var collection = db.collection('users');
+      collection.find().toArray(function (err, result) {
+        if(result.length == 0) {
+          res.json({"userNotFound": true});
+        } else {
+          res.json(result);
+        }
+        db.close();
+      });
+    }
+  });
+}

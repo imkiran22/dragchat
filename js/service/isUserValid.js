@@ -26,6 +26,13 @@ define([], function() {
                       });
       return( request.then( handleSuccess, handleError ) );
     }
+    function getUserListOnLoad() {
+      var request = $http({
+                        method: "get",
+                        url: "getUserListOnLoad"
+                      });
+      return( request.then( handleSuccess, handleError ) );
+    }
     return {
       check: function () {
         if (localStorage.getItem("user.userName") === null || localStorage.getItem("user.userName") === undefined || localStorage.getItem("user.userName") === "") {
@@ -33,7 +40,8 @@ define([], function() {
             $state.go('login');
         }
       },
-      getUserList: getUserList
+      getUserList: getUserList,
+      getUserListOnLoad: getUserListOnLoad
     }
   }];
 })

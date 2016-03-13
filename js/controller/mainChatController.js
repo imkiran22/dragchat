@@ -1,5 +1,5 @@
 define(['jquery'], function($) {
-   return ['$scope', '$timeout', 'smileyService', function($scope, $timeout, smileyService) {
+   return ['$scope', '$timeout', 'smileyService','isUserValid', function($scope, $timeout, smileyService, isUserValid) {
        $scope.chatRoomList = [];
        $scope.error = false;
        $scope.success = false;
@@ -39,5 +39,11 @@ define(['jquery'], function($) {
              $scope.chatRoomList = response;
           });
        };
+       $scope.getUserListOnLoad = function () {
+         isUserValid.getUserListOnLoad().then(function(response) {
+           $scope.userContacts = response;
+         });
+       };
+       $scope.getUserListOnLoad();
    }];
 });

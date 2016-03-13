@@ -61,6 +61,9 @@ app.get('/getUserList', function(req, res) {
   var queryObject = url.parse(req.url, true).query;
   userListService.getUserList(req, res, queryObject);
 });
+app.get('/getUserListOnLoad', function(req, res) {
+  userListService.getUserListOnLoad(req, res);
+});
 var portServer = Number(process.env.PORT || 3000);
 var server = app.listen(portServer, function () {
   var host = server.address().address
@@ -112,7 +115,7 @@ io.sockets.on('connection', function(socket) {
         console.log(JSON.stringify(data));
         if (data.to in users) {
            io.to(users[data.to]).emit("new_priv_msg", data);
-           /*io.to(users[data.from]).emit("new_priv_msg", data);*/
+           io.to(users[data.from]).emit("new_priv_msg", data);
         } else {
             callback("User is not connected");
         }
@@ -121,9 +124,10 @@ io.sockets.on('connection', function(socket) {
         /*io.sockets.in(data.from).emit("new_priv_msg", data);*/
     });
     // when the user disconnects.. perform this
-  	socket.on('disconnect', function(){
+  	socket.on('disconnect_user', function(data){
   		// remove the username from global usernames list
-      console.log("User left ~ ");
+      console.log("User left ~ "+ data.userId);
+      delete users[data.userId];
 
       /*delete users[data.userId];*/
   		// echo globally that this client has left

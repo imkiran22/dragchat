@@ -1,6 +1,7 @@
 <div class="animated" id="chat-target">
+  <div ui-view>
 <!--Inject Your View Here -->
-<div class="navbar-collapse collapse sidebar-navbar-collapse" style="height:inherit" ui-view>
+<div class="navbar-collapse collapse sidebar-navbar-collapse" style="height:inherit">
 
   <div class="input-prepend">
     <input class="paytm" type="text" id="group" ng-model="group" ng-keypress="triggerClick($event)" placeholder="Enter New Group">
@@ -11,12 +12,17 @@
 <div ng-show="success">
   <h3>Created Successfully</h3>
 </div>
-<h2> Groups </h2>
+<h1 class="jumbotron"> Groups </h1>
   <ul class="nav navbar-nav" style="height:inherit">
     <li
     ng-repeat="x in chatRoomList">
-    <a ui-sref="chat.hub({chatId: x.groupId })" style="cursor: pointer">{{x.groupName}}</a><br>
+    <a ui-sref="base.chat.hub({chatId: x.groupId })" style="cursor: pointer">{{x.groupName}}</a><br>
     </li>
   </ul>
 </div><!--/.nav-collapse -->
+<div id="privateChat">
+  <h1 class="jumbotron">Contacts</h1>
+   <span ng-repeat="x in userContacts"><a ui-sref="base.contacts.private({userId: x.userId})" style="cursor: pointer">{{x.userName}}</a><br><br></span>
+</div>
+</div>
 </div>
