@@ -1,4 +1,4 @@
-define([], function() {
+define(['jquery'], function($) {
    return ['$scope', '$timeout','$stateParams','app', function($scope, $timeout, $stateParams, app) {
        $scope.privateMessageList = [];
        $scope.userId = $stateParams.userId;
@@ -29,5 +29,6 @@ define([], function() {
                $("#privateMessage").focus();
                $scope.showSmiley = false;
        };
+       $("#contentEdit").css("top", $(window).height());
    }];
 });

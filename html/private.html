@@ -1,6 +1,9 @@
-<div class="">
-  <h3 class="header-title">{{userId}}</h3>
-  <div class="main" style="overflow-x: hidden">
+ <md-content flex layout-padding class="">
+  <md-toolbar class="md-warn">
+         <div class="md-toolbar-tools">
+            <h2 class="md-flex">{{userId}}</h2>
+         </div>
+  </md-toolbar>
   <div class="bubble" ng-repeat="priv in privateMessageList" ng-class="(priv.from == userMobile) ? 'imuser' : ''" accesskey=""
     ng-style="priv.from == userMobile ? { 'background':'#2ECC71' } : { 'background':'#e9d460' }">
       <p>
@@ -11,16 +14,19 @@
       <span style="color: #363636;font-size: 14px;font-weight:normal" class="bubbleInner" ng-bind-html="priv.message"></span>
       </p>
   </div>
-  </div>
-  <div style="position: fixed; top: 595px; width: 964px;" contenteditable="true" placeholder="Enter a message..." id="privateMessage" class="paytm" ng-keyup="send($event)"></div>
-  <div ng-show="showSmiley" class="smiley" style="bottom:0px;position:relative;top:200px">
+  </md-content>
+  <md-content flex layout-padding style="position: fixed;" id="contentEdit">
+    <div contenteditable="true" placeholder="Enter a message..." id="privateMessage" class="paytm" ng-keyup="send($event)"></div>
+  </md-content>
+  <!-- <div style="position: fixed; top: 595px; width: 964px;" contenteditable="true" placeholder="Enter a message..." id="privateMessage" class="paytm" ng-keyup="send($event)"></div>
+  <div ng-show="showSmiley" class="smiley" style="position: relative;top:200px">
       <div ng-repeat = "xImg in smileyArray">
          <span ng-repeat = "smg in xImg">
            <img ng-src="{{smg}}" title="{{smg}}" style=" width: 40px;cursor: pointer" ng-click="sendSmiley(smg)"/>
          </span>
       </div>
   </div>
-</div>
-<div style="position:fixed;z-index: 999;top:550px;cursor: pointer">
+<div style="position:fixed;z-index: 999;top:570px;cursor: pointer">
   <i class="fa fa-smile-o fa-lg" ng-click="showSmiley=!showSmiley"></i>
-</div>
+</div> -->
+

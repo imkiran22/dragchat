@@ -23,7 +23,12 @@ requirejs.config({
         removeTilda: 'filter/removeTilda',
         contactsController: 'controller/contactsController',
         privateController: 'controller/privateController',
-        contactDirective: 'directive/contactDirective'
+        contactDirective: 'directive/contactDirective',
+        angularAnimate: 'lib/angular-animate',
+        angularAria: 'lib/angular-aria',
+        angularMessages: 'lib/angular-messages',
+        angularMaterial: 'lib/angular-material',
+        songsController: 'controller/songsController'
     },
     shim: {
         angular: {
@@ -34,6 +39,18 @@ requirejs.config({
         },
         angularSanitize: {
           deps: ['angular']
+        },
+        angularAnimate: {
+          deps: ['angular']
+        },
+        angularAria: {
+          deps: ['angular','angularAnimate']
+        },
+        angularMessages: {
+          deps: ['angular','angularAnimate']
+        },
+        angularMaterial: {
+          deps: ['angular', 'angularAnimate','angularAria', 'angularMessages']
         },
         dragdrop: {
           deps: ['angular']

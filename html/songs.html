@@ -1,0 +1,26 @@
+<div class="animated" id="songs-target">
+<div class="player">
+		<div id='progressOut'>
+		     <div id='progressIn'>
+		          <div id='time'>00:00</div>
+		     </div>
+		</div>
+{{currentAudioTime}} <br>
+{{currentAudioDuration}}
+</div>
+<div ng-repeat="parent in songList">
+  <ul id="song-ul" style="list-style-type: none;cursor:pointer;width: 70%;">
+	  <li id="song-li-{{$index}}" ng-repeat = "child in parent track by $index" class="unSelectedPlayer">
+	    <h3 class="marginSet">{{child | removeTilda}}</h3>
+	    <span style="margin: 1%;padding: 1%">
+	    <a ng-click="play($index)"><i class="fa fa-play"></i> Play&nbsp;&nbsp;</a>
+	    <a ng-click="pause($index)"><i class="fa fa-pause"></i> Pause &nbsp;&nbsp;</a>
+	    </span>
+	    <audio controls class="animated" id="audio-{{$index}}">
+			  <source ng-src="{{child}}" type="audio/ogg">
+			  <source ng-src="{{child}}" type="audio/mpeg">
+	    </audio>
+	  </li>
+   </ul>
+</div>
+</div>

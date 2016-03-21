@@ -1,0 +1,1 @@
+var socketio = io.connect("localhost:3000");

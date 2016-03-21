@@ -38,6 +38,8 @@ define([], function() {
         if (localStorage.getItem("user.userName") === null || localStorage.getItem("user.userName") === undefined || localStorage.getItem("user.userName") === "") {
             /*$window.location.href= "enter.html";*/
             $state.go('login');
+        } else {
+            socketio.emit('reconnect_user', {from: localStorage.getItem("user.mobile")});
         }
       },
       getUserList: getUserList,

@@ -9,50 +9,15 @@
   <link href="css/style.css" rel="stylesheet">
   <link href="css/animate.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
-  <style>
-  /* make sidebar nav vertical */
-@media (min-width: 768px) {
-  .sidebar-nav .navbar .navbar-collapse {
-    padding: 0;
-    max-height: none;
-  }
-  .sidebar-nav .navbar ul {
-    float: none;
-    display: block;
-  }
-  .sidebar-nav .navbar li {
-    float: none;
-    display: block;
-  }
-  .sidebar-nav .navbar li a {
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
-}
-.paytm {
-  border-color: #2C0766;
-  border-width: 0 0 1.4px;
-  border-style:solid;
-  box-shadow: 0 0px 0px white inset, 0 0 0px white;
-  height: 60px;
-}
-.paytm:focus {
-  outline: 0 none;
-  border-color: #2C0766;
-  border-width: 0 0 2.4px;
-  box-shadow: 0 0px 0px white inset, 0 0 0px white;
-}
-</style>
-<link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/material.css">
   <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
   <script src="node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
-  <script>
-    var socketio = /*io.connect("nodechatkiran.herokuapp.com");*/io.connect("localhost:3000");
-  </script>
+  <script src="js/socketConnection.js"></script>
   <script data-main="js/require.config" src="js/lib/require.js"></script>
   </head>
-<body>
-  <div class="container-fluid" ui-view>
+<body ng-cloak layout="column">
+  <div flex layout="row" ui-view>
 
   </div>
 </body>

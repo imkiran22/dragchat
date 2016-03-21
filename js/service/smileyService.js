@@ -55,12 +55,20 @@ define([], function() {
                       });
       return( request.then( handleSuccess, handleError ) );
     }
+    function getSongList() {
+       var request = $http({
+                        method: "get",
+                        url: "songs"
+                      });
+      return( request.then( handleSuccess, handleError ) );
+    }
     return ({
       getSmiley: getSmiley,
       insertResult: insertResult,
       selectResult: selectResult,
       createNewGroup: createNewGroup,
-      getChatRoomList: getChatRoomList
+      getChatRoomList: getChatRoomList,
+      getSongList: getSongList
     });
   }];
 })

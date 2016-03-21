@@ -1,6 +1,6 @@
-define(['angular', 'loginController', 'contactDirective','privateController', 'dragdropController','contactsController', 'mainChatController', 'chatController' , 'profileController' , 'jquery','isUserValid' ,'dateFormatFilter' ,'smileyService' , 'removeTilda', 'dragdrop', 'uiRouter', 'angularSanitize'], function(angular, loginController, contactDirective, privateController, dragdropController,contactsController, mainChatController, chatController, profileController, $, isUserValid, dateFormatFilter,smileyService, removeTilda) {
+define(['angular','songsController', 'loginController', 'contactDirective','privateController', 'dragdropController','contactsController', 'mainChatController', 'chatController' , 'profileController' , 'jquery','isUserValid' ,'dateFormatFilter' ,'smileyService' , 'removeTilda', 'dragdrop', 'uiRouter', 'angularSanitize', 'angularMaterial'], function(angular,songsController,loginController, contactDirective, privateController, dragdropController,contactsController, mainChatController, chatController, profileController, $, isUserValid, dateFormatFilter,smileyService, removeTilda, angularMaterial) {
    'use strict';
-   var app = angular.module('myApp', ['ui.router','ngDragDrop', 'ngSanitize']);
+   var app = angular.module('myApp', ['ui.router','ngDragDrop', 'ngSanitize', 'ngMaterial']);
    app.init = function () {
       angular.bootstrap(document, ['myApp']);
    };
@@ -50,12 +50,24 @@ define(['angular', 'loginController', 'contactDirective','privateController', 'd
             url: "/base",
             templateUrl: 'html/base.html',
             controller: 'dragdropController'
+        }).state('base.songs', {
+            url: "/songs",
+            templateUrl: 'html/songs.html',
+            controller: 'songsController',
+            resolve: {
+              songs: function(smileyService) {
+                return smileyService.getSongList().then(function (response) {
+                 return response;
+                });
+              }
+            }
         });
    }]);
    app.controller('loginController', loginController);
    app.controller('mainChatController', mainChatController);
    app.controller('chatController', chatController);
    app.controller('privateController', privateController);
+   app.controller('songsController', songsController);
    app.controller('contactsController', contactsController);
    app.controller('profileController', profileController);
    app.controller('dragdropController', dragdropController);

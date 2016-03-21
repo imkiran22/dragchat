@@ -1,24 +1,15 @@
-<div class="row"  style="height:inherit">
-    <div class="col-md-3" style="height:inherit">
-                <div class="sidebar-nav" style="height:inherit">
-                  <div class="navbar navbar-default" role="navigation" style="height:inherit;padding: 10px;margin: 10px">
-                    <div class="navbar-collapse collapse sidebar-navbar-collapse" style="height:inherit">
-                      <ul class="nav navbar-nav" style="height:inherit">
+    <md-sidenav flex="15" md-is-locked-open="true" class="md-whiteframe-z1">
+      <md-content>
+        <ul>
                         <li
                         ng-repeat="man in men track by $index">
-                        <span ng-if="man.name != 'logout'"><a id="{{man.name}}" ui-draggable="true" drag="man.path"
-                         ui-sref="{{man.path}}">{{man.name}}</a></span> <br>
-                         <span ng-if="man.name == 'logout'" style="cursor:pointer"><a id="{{man.name}}" ng-click="logout()" ui-draggable="true" drag="man.name">{{man.name}}</a></span><br>
+                        <span ng-if="man.name != 'logout'" class="rounded"><i class="fa fa-circle-o-notch"><a id="{{man.name}}" ui-draggable="true" drag="man.path"
+                         ui-sref="{{man.path}}" class="img-rounded">{{man.name}}</a></i></span><br>
+                         <span ng-if="man.name == 'logout'" style="cursor:pointer"><i class="fa fa-circle-o-notch"><a id="{{man.name}}" ng-click="logout()" ui-draggable="true" drag="man.name">{{man.name}}</a></i></span><br>
                         </li>
-                      </ul>
-                      <!--<ul>
-                        <li style="color:black;font-size: 14px;cursor: pointer"><a id="{{logoutMe}}" ui-draggable="true" drag="logoutMe" ng-click="logout()">{{logoutMe}}</a></li>
-                      </ul>-->
-                    </div><!--/.nav-collapse -->
-                </div>
-              </div>
-            </div>
-    <div class="col-md-9" id="droppable" ui-on-Drop="onDrop($event, $data)" drag-enter-class="on-drag-enter-custom" drag-hover-class="on-drag-hover-custom" ui-view style="height: inherit;margin-left: -17px;padding-left: 30px;padding-top: 10px">
+        </ul>
+      </md-content>
+    </md-sidenav>
+    <md-content flex="85" id="droppable" ui-on-Drop="onDrop($event, $data)" drag-enter-class="on-drag-enter-custom" drag-hover-class="on-drag-hover-custom" ui-view>
+    </md-content>
 
-    </div>
-</div>

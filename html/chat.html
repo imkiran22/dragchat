@@ -1,9 +1,13 @@
 
-<div>
-  <h3 class="header-title">{{content.userName}}</h3>
+<md-content>
+  <md-toolbar class="md-warn">
+         <div class="md-toolbar-tools">
+            <h2 class="md-flex">{{content.userName}}</h2>
+         </div>
+  </md-toolbar>
   <!--<textarea ng-model="content.msg" ng-keyup="send($event)"></textarea>-->
-
   <div class="main" id="chat-window" style="overflow-x: hidden">
+  <md-content flex layout-padding>
     <div ng-repeat="msg in messageTransferData" class="bubble" ng-class="(msg.userId == content.userId) ? 'imuser' : ''" accesskey=""
       ng-style="msg.userId == content.userId ? { 'background':'#2ECC71' } : { 'background':'#e9d460' }"
       <p>
@@ -15,15 +19,17 @@
       </p>
     </div>
   </div>
-  <div contenteditable="true" onfocus="this.value = this.value;" placeholder="Enter a message..." id="contentMessage" class="paytm" ng-keyup="send($event)"></div><br>
-  <div ng-show="showSmiley" class="smiley">
+  <div contenteditable="true" onfocus="this.value = this.value;" placeholder="Enter a message..." id="contentMessage" class="paytm" ng-keyup="send($event)"></div>
+  <md-content flex layout-padding ng-show="showSmiley" class="smiley">
       <div ng-repeat = "xImg in smileyArray">
          <span ng-repeat = "smg in xImg">
            <img ng-src="{{smg}}" title="{{smg}}" style=" width: 40px;cursor: pointer" ng-click="sendSmiley(smg)"/>
          </span>
       </div>
-  </div>
+  </md-content>
 </div>
-  <div style="position:relative;z-index: 999;bottom:35px;cursor: pointer">
+</md-content>
+  <div style="position:relative;z-index: 999;bottom:5px;cursor: pointer">
     <i class="fa fa-smile-o fa-lg" ng-click="showSmiley=!showSmiley"></i>
   </div>
+</md-content>

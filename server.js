@@ -40,7 +40,7 @@ app.post('/createNewGroup', function(req, res) {
      creator: req.body.creator
    };
    mongoDbService.createNewGroup(req, res, queryObject);
-})
+});
 app.get('/smiley', function(req, res) {
   arr = [], mainArr = [], jsonObj = {};
   var filesName = getFiles('smiley');
@@ -52,6 +52,12 @@ app.get('/smiley', function(req, res) {
   }
   temp.shift();
   jsonObj.fileName = temp;
+  res.send(jsonObj);
+});
+app.get('/songs', function(req, res) {
+  arr = [], mainArr = [], jsonObj = {};
+  var filesName = getFiles('songs');
+  jsonObj.fileName = mainArr;
   res.send(jsonObj);
 });
 app.get('/getChatRoomList', function(req, res) {
@@ -133,4 +139,7 @@ io.sockets.on('connection', function(socket) {
   		// echo globally that this client has left
   		/*socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');*/
   	});
+    socket.on('reconnect_user', function(data){
+      users[data.from] = socket.id;
+    })
 });

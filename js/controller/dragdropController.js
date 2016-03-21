@@ -12,6 +12,9 @@ define(['jquery'], function($) {
       name: "contacts",
       path: 'base.contacts'
     }, {
+      name: "songs",
+      path: "base.songs"
+    },{
       name: "logout",
       path: ''
     }
@@ -37,5 +40,6 @@ define(['jquery'], function($) {
       $state.go('login');
       /*$window.location.href= "enter.html";*/
     };
+    $("#dragbase").css("height", screen.height - 180);
   }];
 });

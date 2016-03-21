@@ -4,8 +4,8 @@ define(['jquery'], function($) {
      $scope.chatId = $stateParams.chatId;
 
      $scope.showSmiley = false;
-     $scope.content.name = localStorage.getItem("user.userName").substring(0, localStorage.getItem("user.userName").indexOf("~"));
-     $scope.content.userId = localStorage.getItem("user.userId");
+     $scope.content.userName = localStorage.getItem("user.userName");
+     $scope.content.userId = localStorage.getItem("user.mobile");
      $scope.messageTransferData = [];
      //Set contenteditable height
      $("#contentMessage").css({"position": "fixed", "top": $(window).height() - 70, "width": $(document).width() - 400});
@@ -63,6 +63,5 @@ define(['jquery'], function($) {
            $scope.messageTransferData = response;
         });
      };
-     $scope.selectResult();
    }];
 });
