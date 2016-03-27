@@ -33,11 +33,11 @@ html,body, .container-fluid {
   font-weight: 800;
 }*/
 .header-title {
-	background-color: #674172;
-	padding: 20px;
-	margin-top: -10px;
-	margin-left: -42px;
-	margin-right: -45px;
+  background-color: #674172;
+  padding: 20px;
+  margin-top: -10px;
+  margin-left: -42px;
+  margin-right: -45px;
   color: #ffffff;
 }
 .bubble {
@@ -47,13 +47,13 @@ width: 399px;
 margin: 10px;
 }
 .bubbleHeader {
-	height: 20px;
-	/*background: slategrey;*/
+  height: 20px;
+  /*background: slategrey;*/
   font-size: 16px;
   font-weight: bold;
 }
 .bubbleInner {
-	padding: 1 px;
+  padding: 1 px;
 }
 .imuser {
   position: relative;
@@ -130,6 +130,10 @@ margin: 10px;
   background: #363636;
   padding: 5%;
 }
+.rounded li{
+  margin: 10px;
+  padding: 10px;
+}
 .rounded a {
   color: red;
 }
@@ -155,13 +159,15 @@ margin: 10px;
 }
 #progressOut
 {
-     width:300px;
-     height:20px;
-     border:1px solid #ccc;
+     width:50%;
+     height:30px;
+     border-color:#363637;
      position:relative;
-     margin-top:30px;
-     left: 50px;
+     top:220px;
+     left: 300px;
      overflow:hidden;
+     border-width:1px;  
+     border-style: dashed;
 }
 #progressIn
 {     
@@ -169,14 +175,47 @@ margin: 10px;
      height:100%;
      bottom:0px;
      width:0px;
-     background:#FC6428;
+     background:#D2D7D3;
 }
 #time
 {
      position:absolute;
-     padding:5px 8px;
-     font-size:10px;
-     background:#12BFD3;
+     padding:8px;
+     /*margin-top: 5px;*/
+     font-size:12px;
+     background:#363637;
      right:0px;
      bottom:0px; 
+}
+#time span {
+      top: 4px;
+      color: white;
+      position:relative;
+}
+.mute {
+    position: relative;
+    float: right;
+    right: 243px;
+    top: 165px;
+    z-index: 999;
+    width:10px;
+}
+.pause {
+    position: relative;
+    left: 248px;
+    top: 165px;
+    z-index: 999;
+    width:10px;
+}
+#backward{
+  width: 10px;
+  position: absolute;
+  left: 10%;
+}
+#forward{
+  width: 10px;
+  position: absolute;
+  float: right;
+  top: 10%;
+  right: 8%;
 }
