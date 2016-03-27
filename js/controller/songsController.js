@@ -105,6 +105,7 @@ define(['jquery'], function($) {
 		};
         $timeout(function() {
             $("#songs-target").addClass('visible bounceInUp');
+            $scope.play(0);
         }, 200);
 	}];
 })
