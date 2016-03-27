@@ -1,12 +1,33 @@
 <div class="animated" id="songs-target">
 <div class="player">
-		<div id='progressOut'>
-		     <div id='progressIn'>
-		          <div id='time'>00:00</div>
+        
+		<div id="progressOut" ng-click="progress($event)" role="button" tabindex="0">
+		     <div id="progressIn" style="width: 99%;">
+		          <div id="time"><span>0:00</span></div>
 		     </div>
 		</div>
-{{currentAudioTime}} <br>
-{{currentAudioDuration}}
+		<div id="mute" class="mute">
+			<div ng-show="muteOnOffBool" aria-hidden="false" class="">
+				<h1 title="Mute Off"><i class="fa fa-volume-up pt" ng-click="muteOnOff(true)" role="button" tabindex="0"></i></h1>
+			</div>
+			<div ng-hide="muteOnOffBool" aria-hidden="true" class="ng-hide">
+				<h1 title="Mute On"><i class="fa fa-volume-off pt" ng-click="muteOnOff(false)" role="button" tabindex="0"></i></h1>
+			</div>
+		</div>
+		<div id="pause" class="pause">
+			<div ng-show="pauseOnPlayerBool" aria-hidden="false" class="">
+				<h1 title="Pause"><i class="fa fa-pause" ng-click="pauseOnPlayer(true)" role="button" tabindex="0"></i></h1>
+			</div>
+			<div ng-hide="pauseOnPlayerBool" aria-hidden="true" class="ng-hide">
+				<h1 title="Play"><i class="fa fa-play" ng-click="pauseOnPlayer(false)" role="button" tabindex="0"></i></h1>
+			</div>
+		</div>
+		<div id="backward">
+        	<h1 title="Step Backward"><i class="fa fa-step-backward" ng-click="stepBackward()" role="button" tabindex="0"></i></h1>
+        </div>
+        <div id="forward">
+        	<h1 title="Step Forward"><i class="fa fa-step-forward" ng-click="stepForward()" role="button" tabindex="0"></i></h1>
+        </div>
 </div>
 <div ng-repeat="parent in songList">
   <ul id="song-ul" style="list-style-type: none;cursor:pointer;width: 70%;">
